@@ -1,62 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANSAH Portfolio</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-  <script src="https://kit.fontawesome.com/f4efa66e1d.js" crossorigin="anonymous"></script></head>
-<body class="dark-mode">
-  <div class="background-container">
-    <img src="images/ -135.jpg" alt="Background Image">
-
-    <!-- Header -->
-    <header class="navbar">
-      <!-- Left Nav Side -->
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">About</a></li>
-        </ul>
-      </nav>
-
-      <!-- if needed center title -->
-      <div class="nav-center">
-        <!-- <h1>ANSAH</h1> -->
-      </div>
-
-      <!-- Right side -->
-      <div class="nav-actions">
-        <div class="dropdown">
-          <span class="dropbtn">Contact Me</span>
-          <div class="dropdown-content">
-            <a href="mailto:example@email.com">Email</a>
-            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-            <a href="https://github.com" target="_blank">GitHub</a>
-          </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f4efa66e1d.js" crossorigin="anonymous"></script>
+    <title>Microsoft Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar closed">
+        <div class="sidebar-header">
+            <button id="closeSidebar" class="close-sidebar-btn">
+                <span>←</span>
+            </button>
+            <span class="sidebar-header-title">Microsoft Portfolio</span>
         </div>
+        <div class="sidebar-content">
+            <h1 class="sidebar-title">Zephaniah Ansah</h1>
 
-        <div id="mode-toggle" class="toggle-switch">
-          <div class="toggle-knob">
-            <i class="fas fa-moon"></i>
-          </div>
+            <nav class="sidebar-nav">
+                <button id="exportDataBtn" class="nav-item export-btn">
+                    <span>Export Data</span>
+                </button>
+            </nav>
+
+            <!-- LeetCode section -->
+            <div class="leetcode-stats">
+                <div class="leetcode-circle">
+                    <svg viewBox="0 0 100 100" class="progress-ring">
+                        <circle class="progress-ring-bg" cx="50" cy="50" r="45"></circle>
+                        <circle id="easyCircle" class="progress-ring-easy" cx="50" cy="50" r="45"></circle>
+                        <circle id="mediumCircle" class="progress-ring-medium" cx="50" cy="50" r="45"></circle>
+                        <circle id="hardCircle" class="progress-ring-hard" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <div class="leetcode-center">
+                        <div id="leetcodeNumber" class="leetcode-number">146</div>
+                        <div id="leetcodeTotal" class="leetcode-total">/3721</div>
+                    </div>
+                </div>
+                <div class="leetcode-labels">
+                    <div class="leetcode-label easy">
+                        <span class="difficulty-dot easy-dot"></span>
+                        <span id="easyCount">Easy: 50</span>
+                    </div>
+                    <div class="leetcode-label medium">
+                        <span class="difficulty-dot medium-dot"></span>
+                        <span id="mediumCount">Medium: 80</span>
+                    </div>
+                    <div class="leetcode-label hard">
+                        <span class="difficulty-dot hard-dot"></span>
+                        <span id="hardCount">Hard: 16</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recents-section">
+                <h2 class="recents-title">Recents</h2>
+                <div id="recentsList" class="recents-list">
+                    <div class="loading-message">Loading repositories...</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </header>
-
-    <div class="bottom-left">
-      <button class="tag-btn">Portfolio</button>
-      <div class="bottom-text">
-        <h2>Lorem, ipsum dolor hhhhsit amet consecteturhhhhhh</h2>
-      </div>
     </div>
-  </div>
 
-  <script src="js/main.js"></script>
+    <!-- Main Content -->
+    <div id="mainContent" class="main-content">
+        <!-- Contact Modal -->
+        <div id="contactModal" class="contact-modal hidden">
+            <div class="modal-content">
+                <button id="closeModal" class="close-modal-btn">×</button>
+                <h2 class="modal-title">Contact Information</h2>
+                <div class="modal-contacts">
+                    <a href="mailto:znansah@wm.edu" class="modal-contact-item" target="_blank">
+                        <span class="contact-icon"><i class="fa-solid fa-envelope"></i></span>
+                        <span class="contact-label">Email</span>
+                        <span class="contact-value">Znansah@wm.edu</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/zephaniah-ansah-78b62b27a/" class="modal-contact-item" target="_blank">
+                        <span class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></span>
+                        <span class="contact-label">LinkedIn</span>
+                        <span class="contact-value">Zansah</span>
+                    </a>
+                    <a href="https://leetcode.com/u/zansah31/" class="modal-contact-item" target="_blank">
+                        <span class="contact-icon"><i class="fa-solid fa-code"></i></span>
+                        <span class="contact-label">LeetCode</span>
+                        <span class="contact-value">Zansah31</span>
+                    </a>
+                    <a href="https://discord.com/users/yourid" class="modal-contact-item" target="_blank">
+                        <span class="contact-icon"><i class="fa-brands fa-discord"></i></span>
+                        <span class="contact-label">Discord</span>
+                        <span class="contact-value">Unc Kobe</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Confirmation Modal -->
+        <div id="exportModal" class="contact-modal hidden">
+            <div class="modal-content export-modal-content">
+                <h2 class="modal-title">Export Data</h2>
+                <p class="export-warning"></p>
+                <p class="export-info">Warning your about to download information from zansah.github.io</p>
+                <div class="export-actions">
+                    <button id="confirmExport" class="confirm-export-btn">Download File</button>
+                    <button id="cancelExport" class="cancel-export-btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- To-Do List Modal -->
+        <div id="todoModal" class="contact-modal hidden">
+            <div class="modal-content todo-modal-content">
+                <div class="todo-header">
+                    <h2 id="todoMonth" class="todo-month">October</h2>
+                    <button id="closeTodo" class="close-modal-btn">×</button>
+                </div>
+                <div class="todo-list-container">
+                    <div id="todoList" class="todo-list">
+                        <!-- To-do items will be added here -->
+                    </div>
+                </div>
+                <div class="todo-input-container">
+                    <input 
+                        type="text" 
+                        id="todoInput" 
+                        placeholder="Add a new task..."
+                        class="todo-input"
+                    />
+                    <button id="addTodoBtn" class="add-todo-btn"><i class="fa-solid fa-arrow-up"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <button id="toggleSidebar" class="toggle-btn">
+                <span id="menuIcon"><i class="fa-solid fa-bars"></i></span>
+            </button>
+            <span class="header-title">Microsoft Portfolio</span>
+            <button id="addMemberBtn" class="header-add-member-btn">+ Add Member</button>
+        </div>
+
+        <!-- Main Area -->
+        <div class="main-area">
+            <div class="portfolio-label">Portfolio</div>
+
+            <h1 class="main-title">
+                <span id="currentTime">12:00 PM</span>
+            </h1>
+            <div id="currentDate" class="current-date">January 1</div>
+
+            <!-- Search Box -->
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Discover my projects"
+                    class="search-input"
+                />
+                <div class="search-actions">
+                    <button id="todoToggle" class="action-btn todo-btn" title="To-Do List">
+                        <span class="todo-icon"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                    <button id="themeToggle" class="action-btn theme-btn" title="Toggle Theme">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="progress-indicator" title="Projects Explored">
+                        <div class="progress-circle">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                <path id="progressCirclePath" class="circle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                            </svg>
+                            <span id="progressPercent" class="progress-percent">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorite Projects -->
+            <div class="contact-platforms">
+                <a href="https://zansah.github.io/cookie-clicker/" class="platform-btn" target="_blank">
+                    <span class="platform-icon"><i class="fa-solid fa-cookie-bite"></i></span>
+                    <span>Cookie Clicker</span>
+                </a>
+                <a href="https://zansah.github.io/blackjack/" class="platform-btn" target="_blank">
+                    <span class="platform-icon"><i class="fa-solid fa-coins"></i></span>
+                    <span>BlackJack</span>
+                </a>
+                <a href="https://zansah.github.io/Volleyball-Scoreboard/" class="platform-btn" target="_blank">
+                    <span class="platform-icon"><i class="fa-solid fa-volleyball"></i></span>
+                    <span>Scoreboard</span>
+                </a>
+                <a href="https://zansah.github.io/Color-Gen/" class="platform-btn" target="_blank">
+                    <span class="platform-icon"><i class="fa-solid fa-palette"></i></span>
+                    <span>Color Generator</span>
+                </a>
+                <a href="https://zansah.github.io/Periodic-Table/" class="platform-btn" target="_blank">
+                    <span class="platform-icon"><i class="fa-solid fa-atom"></i></span>
+                    <span>Perodic Table</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
 </body>
 </html>

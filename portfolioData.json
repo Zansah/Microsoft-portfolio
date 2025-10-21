@@ -1,0 +1,45 @@
+{
+  "projects": [
+    { "name": "Cookie Clicker", "link": "https://zansah.github.io/cookie-clicker/" },
+    { "name": "BlackJack", "link": "https://zansah.github.io/blackjack/" },
+    { "name": "Volleyball Scoreboard", "link": "https://zansah.github.io/Volleyball-Scoreboard/" },
+    { "name": "Color Generator", "link": "https://zansah.github.io/Color-Gen/" },
+    { "name": "Periodic Table", "link": "https://zansah.github.io/Periodic-Table/" },
+    { "name": "Databank", "link": "https://zansah.github.io/Databank/" },
+    { "name": "Tic-Tac-Tie", "link": "https://zansah.github.io/Tic-Tac-Tie/" },
+    { "name": "SunsNoodles", "link": "https://zansah.github.io/SunsNoodles/" },
+    { "name": "Minecraft Block", "link": "https://zansah.github.io/Minecraft-Block/" },
+    { "name": "Memory Game", "link": "https://zansah.github.io/Memory-Game/" },
+    { "name": "3D Rotating Block", "link": "https://zansah.github.io/3D_Rotating_Block/" },
+    { "name": "Anime Anagram", "link": "https://zansah.github.io/Anime-Anagram/" },
+    { "name": "Chainsaw Man Landing Page", "link": "https://zansah.github.io/chainsaw-man-landing-page/" },
+    { "name": "Guessing Game", "link": "https://zansah.github.io/Guessing-Game-Javascript/" },
+    { "name": "Anime Tier List", "link": "https://zansah.github.io/Anime-Tier-List/" },
+    { "name": "Percent Error Calculator", "link": "https://zansah.github.io/Percent-Error-Calculator/" },
+    { "name": "Writing Prompt Generator", "link": "https://zansah.github.io/Writing-Prompt-Generator/" },
+    { "name": "Word Counter", "link": "https://zansah.github.io/Word-Counter/" },
+    { "name": "Joke Generator", "link": "https://zansah.github.io/Joke-generator/" },
+    { "name": "Dark and Light Mode", "link": "https://zansah.github.io/Dark-and-Light-mode/" },
+    { "name": "Rock Paper Scissors", "link": "https://zansah.github.io/Rock-Paper-Scissors/" },
+    { "name": "Weight Converter", "link": "https://zansah.github.io/Weight-Converter/" },
+    { "name": "Tip Calculator", "link": "https://zansah.github.io/Tip-Calculator/" },
+    { "name": "Pendulum Simulation", "link": "https://zansah.github.io/Pendulum-Simulation/" },
+    { "name": "Advanced Palindrome", "link": "https://zansah.github.io/Advanced-Palindrome/" },
+    { "name": "Age Calculator", "link": "https://zansah.github.io/Age_Calculator/" },
+    { "name": "Color Gen", "link": "https://zansah.github.io/Color-Gen/" },
+    { "name": "Profile Card", "link": "https://zansah.github.io/Profile-card/" },
+    { "name": "Mini Pinterest", "link": "https://zansah.github.io/Mini-pinterest/" },
+    { "name": "Mini Calendar", "link": "https://zansah.github.io/Mini-Calendar/" },
+    { "name": "Love Calculator", "link": "https://zansah.github.io/Love-Calculator/" },
+    { "name": "Whack A Toad", "link": "https://zansah.github.io/Whack-A-Toad/" },
+    { "name": "Weather", "link": "https://zansah.github.io/Weather/" }
+
+
+  ],
+  "leetcode": {
+    "easy": 119,
+    "medium": 24,
+    "hard": 3,
+    "total": 3721
+  }
+}
