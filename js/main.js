@@ -18,6 +18,7 @@ const todoToggle = document.getElementById('todoToggle');
 const todoModal = document.getElementById('todoModal');
 const closeTodoBtn = document.getElementById('closeTodo');
 const todoInput = document.getElementById('todoInput');
+const todoDateInput = document.getElementById('todoDateInput');
 const addTodoBtn = document.getElementById('addTodoBtn');
 const todoList = document.getElementById('todoList');
 const todoMonth = document.getElementById('todoMonth');
@@ -29,6 +30,11 @@ const currentTimeEl = document.getElementById('currentTime');
 const currentDateEl = document.getElementById('currentDate');
 const searchInput = document.getElementById('searchInput');
 const themeToggle = document.getElementById('themeToggle');
+const projectModal = document.getElementById('projectModal');
+const closeProjectModal = document.getElementById('closeProjectModal');
+const projectModalTitle = document.getElementById('projectModalTitle');
+const projectModalLink = document.getElementById('projectModalLink');
+const projectIframe = document.getElementById('projectIframe');
 
 let todos = [];
 
@@ -136,6 +142,14 @@ function renderTodos() {
         const dayName = days[date.getDay()];
         const dayNum = date.getDate();
         
+        const formattedDate = date.toLocaleString('en-US', { 
+            month: 'short', 
+            day: 'numeric', 
+            hour: 'numeric', 
+            minute: '2-digit',
+            hour12: true 
+        });
+        
         todoItem.innerHTML = `
             <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
                 <div style="text-align: center; min-width: 40px;">
@@ -144,10 +158,11 @@ function renderTodos() {
                 </div>
                 <div class="todo-item-content">
                     <div class="todo-item-text">${todo.text}</div>
-                    ${todo.time ? `<div class="todo-item-time">${todo.time}</div>` : ''}
+                    <div class="todo-item-time">${formattedDate}</div>
                 </div>
             </div>
             <div class="todo-item-actions">
+                <button class="todo-edit-btn" onclick="editTodo(${index})" title="Edit"><i class="fa-solid fa-pen"></i></button>
                 <button class="todo-complete-btn" onclick="toggleTodo(${index})">${todo.completed ? '↺' : '✓'}</button>
                 <button class="todo-delete-btn" onclick="deleteTodo(${index})">×</button>
             </div>
@@ -161,10 +176,11 @@ function addTodo() {
     const text = todoInput.value.trim();
     if (!text) return;
     
-    const now = new Date();
+    const dueDate = todoDateInput.value ? new Date(todoDateInput.value) : new Date();
+    
     todos.push({
         text: text,
-        date: now.toISOString(),
+        date: dueDate.toISOString(),
         time: '',
         completed: false
     });
@@ -172,7 +188,30 @@ function addTodo() {
     saveTodos();
     renderTodos();
     todoInput.value = '';
+    todoDateInput.value = '';
 }
+
+window.editTodo = function(index) {
+    const todo = todos[index];
+    const newText = prompt('Edit task:', todo.text);
+    if (newText !== null && newText.trim() !== '') {
+        todo.text = newText.trim();
+        
+        const currentDate = new Date(todo.date);
+        const dateStr = currentDate.toISOString().slice(0, 16);
+        const newDateStr = prompt('Edit due date and time (YYYY-MM-DDTHH:MM):', dateStr);
+        
+        if (newDateStr) {
+            const newDate = new Date(newDateStr);
+            if (!isNaN(newDate.getTime())) {
+                todo.date = newDate.toISOString();
+            }
+        }
+        
+        saveTodos();
+        renderTodos();
+    }
+};
 
 window.toggleTodo = function(index) {
     todos[index].completed = !todos[index].completed;
@@ -185,6 +224,27 @@ window.deleteTodo = function(index) {
     saveTodos();
     renderTodos();
 };
+
+// Project Modal Events
+closeProjectModal.addEventListener('click', () => {
+    projectModal.classList.add('hidden');
+    projectIframe.src = '';
+});
+
+projectModal.addEventListener('click', (e) => {
+    if (e.target === projectModal) {
+        projectModal.classList.add('hidden');
+        projectIframe.src = '';
+    }
+});
+
+function openProjectPreview(name, link) {
+    projectModalTitle.textContent = name;
+    projectModalLink.href = link;
+    projectIframe.src = link;
+    projectModal.classList.remove('hidden');
+    markProjectAsVisited(link);
+}
 
 // To-Do Modal Events
 todoToggle.addEventListener('click', () => {
@@ -562,8 +622,8 @@ function displayAutocomplete(results, query) {
     autocompleteContainer.querySelectorAll('.autocomplete-item').forEach(item => {
         item.addEventListener('click', () => {
             const link = item.getAttribute('data-link');
-            markProjectAsVisited(link);
-            window.open(link, '_blank', 'noopener');
+            const name = item.getAttribute('data-name');
+            openProjectPreview(name, link);
             clearAutocomplete();
             clearSearchResults();
             searchInput.value = '';
@@ -597,7 +657,7 @@ function displaySearchResults(results, query) {
     resultsContainer.innerHTML = `
         <div class="search-results-header">Search Results for "${query}"</div>
         ${results.map(project => `
-            <a href="${project.link}" class="search-result-item" target="_blank" rel="noopener noreferrer" data-link="${project.link}">
+            <a href="#" class="search-result-item" data-link="${project.link}" data-name="${project.name}">
                 <span class="search-result-name">${project.name}</span>
                 <span class="search-result-arrow">→</span>
             </a>
@@ -608,8 +668,8 @@ function displaySearchResults(results, query) {
         item.addEventListener('click', (e) => {
             e.preventDefault();
             const link = item.getAttribute('data-link');
-            markProjectAsVisited(link);
-            window.open(link, '_blank', 'noopener');
+            const name = item.getAttribute('data-name');
+            openProjectPreview(name, link);
             clearSearchResults();
             searchInput.value = '';
             document.querySelector('.search-actions').style.display = 'flex';
@@ -655,8 +715,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         document.querySelectorAll('.platform-btn').forEach(button => {
             button.addEventListener('click', (e) => {
+                e.preventDefault();
                 const link = button.getAttribute('href');
-                markProjectAsVisited(link);
+                const name = button.querySelector('span:last-child').textContent;
+                openProjectPreview(name, link);
             });
         });
     }, 500);

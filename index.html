@@ -131,7 +131,28 @@
                         placeholder="Add a new task..."
                         class="todo-input"
                     />
+                    <input 
+                        type="datetime-local" 
+                        id="todoDateInput" 
+                        class="todo-date-input"
+                    />
                     <button id="addTodoBtn" class="add-todo-btn"><i class="fa-solid fa-arrow-up"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Preview Modal -->
+        <div id="projectModal" class="contact-modal hidden">
+            <div class="modal-content project-modal-content">
+                <button id="closeProjectModal" class="close-modal-btn">×</button>
+                <div class="project-modal-header">
+                    <h2 id="projectModalTitle" class="modal-title">Project Preview</h2>
+                    <a id="projectModalLink" href="#" target="_blank" class="project-open-btn">
+                        Open in New Tab <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+                <div class="project-iframe-container">
+                    <iframe id="projectIframe" src="" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
